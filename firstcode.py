@@ -5,7 +5,7 @@ WINDOW = 3 #TODO ask value
 def main():
     bedfile = (row for row in open("/home/user/D/BAMdata/proje/bedfilem.bed" ,"r")) #TODO I will use sampy 
     preseq = bedfile.readline()
-    
+    length = preseq[2] - preseq[1] # as I recognize seq lengths are same every where
     sonuc = open("sonuc.txt","w")
     ittirate = 0
     data_dic = {}#TODO will change to array
@@ -13,7 +13,7 @@ def main():
     while True:
         
         seq = next(bedfile).split()
-        chr1, start1, end1 = seq[0], int(seq[1]), int(seq[2])
+        chr1, start1, end1 = seq[0], int(seq[1]), int(seq[1])+length
         print(seq)
         for nucleotid in range(start1, end1+1):
             try:
